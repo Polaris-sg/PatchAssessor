@@ -97,7 +97,7 @@ class PatchCorrectnesEvaluator:
         if len(cm) > 1:
             print(f"TN: {cm[0][0]}, FP: {cm[0][1]}")
             print(f"FN: {cm[1][0]}, TP: {cm[1][1]}")
-            print("(0=正确补丁, 1=不正确补丁)")
+            print("(0=correct patch, 1= overfitting patch)")
             
             precision = metrics.get("precision")
             recall = metrics.get("recall")
@@ -110,12 +110,7 @@ class PatchCorrectnesEvaluator:
             print("Confusion matrix not available")
     
     def save_metrics(self, output_path):
-        """
-        保存评估指标到文件
-        
-        Args:
-            output_path (str): 输出文件路径
-        """
+
         metrics = self.compute_metrics()
         make_needed_dir(output_path)
         
@@ -143,3 +138,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     main(args)
+
