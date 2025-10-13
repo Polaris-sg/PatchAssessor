@@ -9,11 +9,7 @@ class PatchDataProcessor:
     
     tool_name = ['ACS', 'Arja','AVATAR', 'CapGen', 'Cardumen', 'DynaMoth', 'FixMiner',
         'GenProg','HDRepair',  'Jaid', 'jGenProg', 'jKali', 'jMutRepair',  'Kali', 'kPAR',
-        'Nopol', 'RSRepair', 'SequenceR', 'SimFix', 'SketchFix', 'SOFix', 'TBar' ]
-    
-    #tool_name = ['ACS']
-    
-    
+        'Nopol', 'RSRepair', 'SequenceR', 'SimFix', 'SketchFix', 'SOFix', 'TBar' ]  
     
     def __init__(self, data_path=None, tool_name=None):
         self.data_path = data_path
