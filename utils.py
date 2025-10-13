@@ -173,7 +173,7 @@ def json_to_graph(json_format):
 
 
 def extract_function_from_patch(patch_content):
-    #从补丁内容中提取函数的旧版本和新版本代码
+    # Extract the old and new versions of the function code from the patch content
     if not patch_content:
         return [], []
     
@@ -182,7 +182,7 @@ def extract_function_from_patch(patch_content):
     new_lines = []
     
     for line in lines:
-        if not line:  # 跳过空行
+        if not line:  
             continue
         if line.startswith('-'):
             old_lines.append(line[1:])
