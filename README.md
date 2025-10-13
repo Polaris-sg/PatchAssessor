@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ## Main Modules
 
-* `data_processing.py`: Processes the `apca_patch_summary.json` dataset.
+* `data_processing.py`: Processes the `PCA_Func_dataset.json` dataset.
 * `patch_retrieval.py`: Implements patch similarity retrieval.
 * `patch_predictor.py`: Predicts patch correctness using LLMs.
 * `evaluation.py`: Calculates evaluation metrics.
