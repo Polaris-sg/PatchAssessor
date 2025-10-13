@@ -13,29 +13,27 @@ from utils.utils import load_jsonl, make_needed_dir, dump_jsonl
 def parse_args():
     parser = argparse.ArgumentParser(description="Patch Correctness Evaluation Pipeline")
     
-    # 指定已处理数据和结果的存储目录
     parser.add_argument('--processed_data_dir', default='./processed_data', help='Directory containing the processed datasets.')
     parser.add_argument('--output_dir', default='./results', help='Output directory for all results')
     
-    # 检索参数
+    # retrieval parameters
     parser.add_argument('--retrieval_mode', default='coarse', choices=['coarse', 'fine', 'coarse2fine'], 
                       help='Patch similarity computation mode: coarse (text-based), fine (graph-based), or coarse2fine (two-phase)')
     parser.add_argument('--max_top_k', type=int, default=10, help='Number of most similar patches to retrieve')
     parser.add_argument('--gamma', type=float, default=0.1, help='Decay factor for graph similarity computation')
     
-    # 预测参数
+    # predictive parameters
     parser.add_argument('--model', default='codellama-7b-hf', 
                        choices=['gpt-3.5-turbo-instruct', 'gpt-4-turbo', 'codellama-7b-hf', 'codellama-13b', 'starcoder2-3b', 'starcoder2-7b', 'starcoder2-15b'],
                        help='LLM model to use for prediction')
     parser.add_argument('--top_k', type=int, default=10, help='Number of similar patches to use for prediction (-1 for all)')
     parser.add_argument('--models_cache_dir', default='./models_cache', help='Directory for cached models')
     
-    # 为了兼容PatchCorrectnessPredictor的调用，保留以下参数
+
     parser.add_argument('--max_context_tokens', type=int, default=2048, help='Maximum number of context tokens for the model')
     # parser.add_argument('--temperature', type=float, default=0.2, help='Temperature for sampling (0 for deterministic)')
     # parser.add_argument('--api_key', default="", help='OpenAI API key')
     
-    # 控制流程参数
     parser.add_argument('--skip_retrieval', action='store_true', help='Skip retrieval step')
     parser.add_argument('--skip_prediction', action='store_true', help='Skip prediction step')
     parser.add_argument('--skip_evaluation', action='store_true', help='Skip evaluation step')
@@ -168,4 +166,5 @@ def run_pipeline(args):
 
 if __name__ == "__main__":
     args = parse_args()
+
     run_pipeline(args)
