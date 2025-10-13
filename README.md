@@ -2,8 +2,7 @@
 
 ## Overview
 
-This project provides the implementation of a **coarse-to-fine retrieval framework** designed to enhance **large language models (LLMs)** for **patch correctness assessment **.
-The framework supports patch data processing, similarity-based retrieval, correctness prediction using LLMs, and comprehensive evaluation.
+In this paper, we propose PatchAssessor, a patch assessment framework that enhances the reasoning capability of LLM for patch correctness via a coarse-to-fine retrieval strategy. PatchAssessor first partitions the historical patch repository and query patches on our constructed patch dataset PCA-Func, then employs a two-stage retrieval combining textual and graph-based structural similarity to identify relevant patches. Retrieved patches, together with query patch, bug, and test information, are formulated into structured prompts to guide the LLM in accurate patch assessment.
 
 ## Key Features
 
@@ -81,4 +80,6 @@ python patch_predictor.py \ --input_path ./search_results\ --output_path ./predi
 python evaluation.py --predictions_path ./results/prediction_results --output_path ./results/evaluation_results
 ```
 
+## To Do
+The PCA-Func dataset will be uploaded after the paper is accepted.
 
