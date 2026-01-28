@@ -80,6 +80,5 @@ python patch_predictor.py \ --input_path ./search_results\ --output_path ./predi
 python evaluation.py --predictions_path ./results/prediction_results --output_path ./results/evaluation_results
 ```
 
-## To Do
-The PCA-Func dataset will be uploaded after the paper is accepted.
+
 
