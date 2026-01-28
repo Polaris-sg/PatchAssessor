@@ -71,7 +71,7 @@ Using different models:
 python patch_predictor0917.py --input_path ./results/search_results --output_path ./results/prediction_results --model codellama-7b-hf
 
 # Specify the number of retrieved similar patches
-python patch_predictor.py \ --input_path ./search_results\ --output_path ./prediction_results \ --top_k 5
+python patch_predictor.py  --input_path ./search_results --output_path ./prediction_results  --top_k 5
 ```
 
 ### 4. Evaluation
