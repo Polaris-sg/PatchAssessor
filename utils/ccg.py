@@ -412,7 +412,6 @@ def create_graph(code_lines):
                     src_lines[i] = before if before.strip() else '\n'
                     in_multiline_comment = True
                 comment_lines.append(i)
-    #print("comment_lines:", comment_lines)
     
     def read_callable(byte_offset, point):
         row, column = point
@@ -424,7 +423,6 @@ def create_graph(code_lines):
     
     root_nodes = []
     if is_function_level and tree.root_node.children:
-        # 寻找class_declaration -> class_body
         for child in tree.root_node.children:
             if child.type == 'class_declaration':
                 for subchild in child.children:
@@ -471,7 +469,7 @@ def create_graph(code_lines):
             ccg.nodes[insert_id]['startRow'] = comment_line_num
             end_row = ccg.nodes[insert_id]['endRow']
             ccg.nodes[insert_id]['sourceLines'] = code_lines[comment_line_num:end_row + 1]
-    if max_comment_line != 0 and node_list:  # 添加node_list非空检查
+    if max_comment_line != 0 and node_list:  
         last_node_id = node_list[-1]
         ccg.nodes[last_node_id]['endRow'] = max_comment_line
         start_row = ccg.nodes[last_node_id]['startRow']
@@ -549,7 +547,6 @@ def extract_patch_subgraph(old_ccg, new_ccg):
                 if (version, successor) in node_mapping:
                     u = node_mapping[(version, orig_node_id)]
                     v = node_mapping[(version, successor)]
-                    # 添加所有边（包括多重边）
                     for key, edge_data in ccg[orig_node_id][successor].items():
                         subgraph.add_edge(u, v, **edge_data)
     
@@ -562,7 +559,6 @@ def extract_patch_subgraph(old_ccg, new_ccg):
 
 
 def normalize_subgraph(subgraph):
-    """规范化子图，将变量名替换为通用标识符"""
     normalized_graph = subgraph.copy()
     
     all_variables = set()
