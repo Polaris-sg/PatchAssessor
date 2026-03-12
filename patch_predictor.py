@@ -334,9 +334,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Predict patch correctness using LLM')
     parser.add_argument('--input_path', required=True, help='Path to the retrieved patches JSONL file')
     parser.add_argument('--output_path', required=True, help='Path to save prediction results')
-    parser.add_argument('--model', default='codellama', 
-                        choices=['gpt-4-turbo', 'codegen', 'codellama',
-                                 'starcoder'],
+    parser.add_argument('--model', default='starcoder', 
+                        choices=['gpt-4-turbo', 'codegen', 'codellama','starcoder'],
                         help='LLM model to use for prediction')
     parser.add_argument('--max_context_tokens', type=int, default=2048, help='Maximum tokens for generation')
     parser.add_argument('--temperature', type=float, default=0, help='Temperature for sampling (0 for deterministic)')
@@ -347,4 +346,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     main(args) 
+
 
