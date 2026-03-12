@@ -30,8 +30,8 @@ class PatchCorrectnessPredictor:
             self.max_context_tokens = max_context_tokens or (4096 - 16)
             self.model = None
             self.model_type = "openai"
-        elif model.startswith('starcoder2-'):
-            # # Starcoder2 family (e.g. starcoder2-7b, starcoder2-15b)
+        elif model.startswith('starcoder'):
+        
             model_path = f"./models_cache/bigcode/{self.model_name}/"
             try:
                 self.model = AutoModelForCausalLM.from_pretrained(
@@ -232,7 +232,7 @@ class PatchCorrectnessPredictor:
             if not self.model:
                 raise ValueError("Model not initialized")
                 
-            if self.model_name.startswith("starcoder2") or self.model_name.startswith("codegen2-"):
+            if self.model_name.startswith("starcoder") or self.model_name.startswith("codegen"):
                 prompt_ids = self.raw_tokenizer(prompt, return_tensors="pt").to(self.device)
                 with torch.no_grad():
                     response_ids = self.model.generate(
@@ -334,9 +334,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Predict patch correctness using LLM')
     parser.add_argument('--input_path', required=True, help='Path to the retrieved patches JSONL file')
     parser.add_argument('--output_path', required=True, help='Path to save prediction results')
-    parser.add_argument('--model', default='codellama-7b-hf', 
-                        choices=['gpt-4-turbo', 'codegen2-7b', 'codellama-7b-hf', 'codellama-13b',
-                                 'starcoder2-3b', 'starcoder2-7b', 'starcoder2-15b'],
+    parser.add_argument('--model', default='codellama', 
+                        choices=['gpt-4-turbo', 'codegen', 'codellama',
+                                 'starcoder'],
                         help='LLM model to use for prediction')
     parser.add_argument('--max_context_tokens', type=int, default=2048, help='Maximum tokens for generation')
     parser.add_argument('--temperature', type=float, default=0, help='Temperature for sampling (0 for deterministic)')
@@ -347,3 +347,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     main(args) 
+
